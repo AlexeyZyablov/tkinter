@@ -19,6 +19,7 @@ file_name = "user_scores.json"
 try:
     with open(file_name, "r") as file:
         file_dict = json.load(file)
+        # print(file_dict)
         print("File allready exist and has correct json  format")
 except:
     with open(file_name, "w") as file:
@@ -26,6 +27,7 @@ except:
         file_title = {
             "File version" : str(datetime.datetime.today())
             }
+        # print(file_title)
         json.dump(file_title, file)
 
 def send_message():
@@ -82,7 +84,10 @@ def save():                    #функция сохранения в файл
     if click_ratio >= 0.5:
         with open(file_name, "r") as file:
             file_dict = json.load(file)
+            # print(file_dict)
+            # print(type(file_dict))
             current_user_from_file = file_dict.get(name)
+            # print(current_user_from_file)
 
         rec_time = datetime.datetime.today()
         user_data = {
@@ -97,6 +102,9 @@ def save():                    #функция сохранения в файл
             current_user_from_file.append(user_data)
         
         file_dict.update({name: current_user_from_file})
+
+        # print(file_dict)
+
 
         with open(file_name, "w") as file:
             json.dump(file_dict, file)
